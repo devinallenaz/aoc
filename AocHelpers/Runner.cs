@@ -8,15 +8,22 @@ public static class Runner
 {
     public static int Year { get; set; }
 
-    public static IEnumerable<TrySolveResult> TrySolveAllSolvers()
+    public static IEnumerable<TrySolveResult> TrySolveAllSolvers(bool testOnly = false)
     {
         var results = new List<TrySolveResult>();
         foreach (var solver in SolverIndex.AllSolvers.OrderBy(s => s.Day))
         {
             results.Add(solver.TrySolve1(true));
-            results.Add(solver.TrySolve1(false));
+            if (!testOnly)
+            {
+                results.Add(solver.TrySolve1(false));
+            }
+
             results.Add(solver.TrySolve2(true));
-            results.Add(solver.TrySolve2(false));
+            if (!testOnly)
+            {
+                results.Add(solver.TrySolve2(false));
+            }
         }
 
         return results;
