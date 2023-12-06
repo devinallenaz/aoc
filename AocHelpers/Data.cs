@@ -259,7 +259,7 @@ public static class Data
         }
     }
 
-    public static (T, IEnumerable<T>) HeadAndTail<T>(this IEnumerable<T> source)
+    public static (T Head, IEnumerable<T> Tail) HeadAndTail<T>(this IEnumerable<T> source)
     {
         return (source.First(), source.Skip(1));
     }
