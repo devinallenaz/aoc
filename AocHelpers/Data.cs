@@ -1,3 +1,5 @@
+using System.Numerics;
+
 namespace AocHelpers;
 
 public static class Data
@@ -237,19 +239,19 @@ public static class Data
     {
         return char.IsDigit(c);
     }
-    
+
     public static bool IsDigit(this char? c)
     {
         if (c == null)
         {
             return false;
         }
+
         return char.IsDigit(c.Value);
     }
 
     public static void Traverse<T>(this T[,] array, Action<int, int, T> action)
     {
-
         for (var y = 0; y < array.GetLength(1); y++)
         {
             for (var x = 0; x < array.GetLength(0); x++)
@@ -262,5 +264,33 @@ public static class Data
     public static (T Head, IEnumerable<T> Tail) HeadAndTail<T>(this IEnumerable<T> source)
     {
         return (source.First(), source.Skip(1));
+    }
+
+    public static TProduct Product<TSource, TProduct>(this IEnumerable<TSource> input, Func<TSource, TProduct> selector) where TProduct : IMultiplyOperators<TProduct, TProduct, TProduct>
+    {
+        return input.Select(selector).Product();
+    }
+
+    public static TProduct Product<TProduct>(this IEnumerable<TProduct> input) where TProduct : IMultiplyOperators<TProduct, TProduct, TProduct>
+    {
+        return input.Aggregate((agg, next) => agg * next);
+    }
+
+    public static long Lcm(long num1, long num2)
+    {
+        var x = num1;
+        var y = num2;
+        while (num1 != num2)
+        {
+            if (num1 > num2)
+            {
+                num1 = num1 - num2;
+            }
+            else
+            {
+                num2 = num2 - num1;
+            }
+        }
+        return (x * y) / num1;
     }
 }

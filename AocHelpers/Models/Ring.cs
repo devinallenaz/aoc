@@ -4,6 +4,10 @@ namespace AocHelpers.Models;
 
 public class Ring<T>
 {
+    public Ring(List<T> items) : this(items.ToArray())
+    {
+    }
+
     public Ring(T[] items)
     {
         this.AllItems = new List<RingItem<T>>();
@@ -22,7 +26,8 @@ public class Ring<T>
 
         this.Length = items.Length;
     }
-    public Ring(T[] items, Func<T,T> calculateValue)
+
+    public Ring(T[] items, Func<T, T> calculateValue)
     {
         this.AllItems = new List<RingItem<T>>();
         var head = new RingItem<T>(0, calculateValue(items[0]), null);
@@ -37,7 +42,7 @@ public class Ring<T>
         }
 
         head.SetPrevious(prev);
-        
+
         this.Length = items.Length;
     }
 
@@ -59,5 +64,4 @@ public class Ring<T>
         sb.Append("]");
         return sb.ToString();
     }
-
 }

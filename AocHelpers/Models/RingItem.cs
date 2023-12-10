@@ -32,7 +32,7 @@ public class RingItem<T>
     public RingItem<T> Previous => _previous ?? throw new ApplicationException("Uninitialized ring");
     private RingItem<T>? _next = null;
     public RingItem<T> Next => _next ?? throw new ApplicationException("Uninitialized ring");
-    public T Value { get; }
+    public T Value { get; set; }
     
 
 }
