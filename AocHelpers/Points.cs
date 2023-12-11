@@ -32,6 +32,11 @@ public static class Points
         return Math.Abs(point2.x - point1.x) + Math.Abs(point2.y - point1.y);
     }
 
+    public static long TaxiDistance(this (long x, long y) point1, (long x, long y) point2)
+    {
+        return Math.Abs(point2.x - point1.x) + Math.Abs(point2.y - point1.y);
+    }
+
     public static IEnumerable<(int x, int y)> ManhattanCircle((int x, int y) center, int distance)
     {
         for (int x = -distance; x <= distance; x++)
