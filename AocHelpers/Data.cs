@@ -34,9 +34,9 @@ public static class Data
         return input.Where(s => !string.IsNullOrWhiteSpace(s));
     }
 
-    public static IEnumerable<char> NonNull(this IEnumerable<char?> input)
+    public static IEnumerable<T> NonNull<T>(this IEnumerable<T?> input)
     {
-        return input.Where(c => c != null).Cast<char>().ToList();
+        return input.Where(c => c != null).Cast<T>().ToList();
     }
 
     public static IEnumerable<int> Range(int start, int end)
