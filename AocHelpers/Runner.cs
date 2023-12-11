@@ -29,6 +29,20 @@ public static class Runner
         return results;
     }
 
+    public static IEnumerable<TrySolveResult> TryLatestSolver()
+    {
+        var results = new List<TrySolveResult>();
+        var solver = SolverIndex.AllSolvers.OrderBy(s => s.Day).Last();
+
+        results.Add(solver.TrySolve1(true));
+        results.Add(solver.TrySolve1(false));
+        results.Add(solver.TrySolve2(true));
+        results.Add(solver.TrySolve2(false));
+
+
+        return results;
+    }
+
     public static void OutputFormattedResults(IEnumerable<TrySolveResult> results)
     {
         if (results.Any())
