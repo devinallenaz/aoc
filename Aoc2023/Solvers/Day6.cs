@@ -1,5 +1,4 @@
 using AocHelpers;
-using AocHelpers;
 using AocHelpers.Solvers;
 public class Day6 : Solver
 {
