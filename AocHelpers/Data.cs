@@ -225,6 +225,19 @@ public static class Data
         return output;
     }
 
+    public static (int x, int y) Find<T>(this T[,] array, T target)
+    {
+        var output = (-1, -1);
+        array.Traverse((x, y, v) =>
+        {
+            if (v?.Equals(target) ?? false)
+            {
+                output = (x, y);
+            }
+        });
+        return output;
+    }
+
     public static T? ValueOrNull<T>(this T[,] array, int x, int y) where T : struct
     {
         if (x < 0 || x >= array.GetLength(0) || y < 0 || y >= array.GetLength(1))
@@ -284,13 +297,14 @@ public static class Data
         {
             if (num1 > num2)
             {
-                num1 = num1 - num2;
+                num1 -= num2;
             }
             else
             {
-                num2 = num2 - num1;
+                num2 -= num1;
             }
         }
+
         return (x * y) / num1;
     }
 }
