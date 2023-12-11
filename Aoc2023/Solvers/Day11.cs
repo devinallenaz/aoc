@@ -5,8 +5,7 @@ using AocHelpers.Solvers;
 public class Day11 : Solver
 {
     public override int Day => 11;
-
-
+    
     private static (List<MutableLongPoint> galaxies, HashSet<int> allX, HashSet<int> allY, int maxX, int maxY) InitGalaxies(string input)
     {
         var galaxies = new List<MutableLongPoint>();
