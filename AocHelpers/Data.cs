@@ -207,6 +207,22 @@ public static class Data
 
         return haves.Concat(haveNots);
     }
+    public static IEnumerable<(T,T)> AllPairs<T>(this IEnumerable<T> source)
+    {
+        if (source.Any())
+        {
+            var (head, tail) = source.HeadAndTail();
+            while (tail.Any())
+            {
+                foreach (var other in tail)
+                {
+                    yield return (head, other);
+                }
+
+                (head, tail) = tail.HeadAndTail();
+            }
+        }
+    }
 
     public static char[,] To2dCharArray(this string input)
     {
