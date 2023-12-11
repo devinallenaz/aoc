@@ -1,0 +1,6 @@
+#!/bin/bash
+
+curl -b "session=$(<bin/cookie.txt)" "https://adventofcode.com/$1/day/$2/input" -o "Aoc$1/Input/day$2.txt"
+touch "Aoc$1/Input/day$2_test.txt"
+cp "bin/DayX.cs" "Aoc$1/Solvers/Day$2.cs"
+sed -Ei "" "s/%/$2/" "Aoc$1/Solvers/Day$2.cs"
