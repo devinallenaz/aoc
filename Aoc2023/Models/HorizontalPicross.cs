@@ -39,12 +39,6 @@ public class HorizontalPicross
         }
     }
 
-    public HorizontalPicross(bool?[] puzzle, int[] clue)
-    {
-        this.Puzzle = puzzle;
-        this.Clue = clue;
-    }
-
     public long PossibleSolutions()
     {
         Console.WriteLine(string.Join(",", this.Clue));
