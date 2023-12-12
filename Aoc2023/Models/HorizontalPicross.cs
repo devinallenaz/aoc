@@ -41,8 +41,7 @@ public class HorizontalPicross
 
     public long PossibleSolutions()
     {
-        Console.WriteLine(string.Join(",", this.Clue));
-        return PossibleSolutions(this.Puzzle[0], 0, 0, 0);
+        return PossibleSolutions(this.Puzzle[0]);
     }
 
     private long PossibleSolutions(bool? currentIsBroken, int clueIndex = 0, int brokenCount = 0, int cursor = 0, bool[]? puzzleSoFar = null)
