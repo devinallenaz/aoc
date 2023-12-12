@@ -323,4 +323,22 @@ public static class Data
 
         return (x * y) / num1;
     }
+
+    public static T[] CopyWithReplacement<T>(this T[] source, int replacementIndex, T replacementValue)
+    {
+        var result = new T[source.Length];
+        for (int i = 0; i < source.Length; i++)
+        {
+            if (i == replacementIndex)
+            {
+                result[i] = replacementValue;
+            }
+            else
+            {
+                result[i] = source[i];
+            }
+        }
+
+        return result;
+    }
 }
