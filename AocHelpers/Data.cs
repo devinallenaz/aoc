@@ -41,13 +41,10 @@ public static class Data
 
     public static IEnumerable<int> Range(int start, int end)
     {
-        var range = new List<int>();
         for (var i = start; i <= end; i++)
         {
-            range.Add(i);
+            yield return i;
         }
-
-        return range;
     }
 
     public static IEnumerable<IEnumerable<T>> Slices<T>(this IEnumerable<T> input, int size)
@@ -207,7 +204,8 @@ public static class Data
 
         return haves.Concat(haveNots);
     }
-    public static IEnumerable<(T,T)> AllPairs<T>(this IEnumerable<T> source)
+
+    public static IEnumerable<(T, T)> AllPairs<T>(this IEnumerable<T> source)
     {
         if (source.Any())
         {
@@ -235,6 +233,34 @@ public static class Data
             foreach (var (c, x) in line.WithIndex())
             {
                 output[x, y] = c;
+            }
+        }
+
+        return output;
+    }
+
+    public static bool[,] To2dBoolArray(this string input, char falseChar, char trueChar)
+    {
+        var lines = input.SplitLines();
+        var width = lines.First().Length;
+        var height = lines.Count();
+        var output = new bool[width, height];
+        foreach (var (line, y) in lines.WithIndex())
+        {
+            foreach (var (c, x) in line.WithIndex())
+            {
+                if (c == falseChar)
+                {
+                    output[x, y] = false;
+                }
+                else if (c == trueChar)
+                {
+                    output[x, y] = true;
+                }
+                else
+                {
+                    throw new InvalidOperationException();
+                }
             }
         }
 
