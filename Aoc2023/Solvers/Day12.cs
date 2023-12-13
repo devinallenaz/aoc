@@ -7,7 +7,7 @@ public class Day12 : Solver
     public override int Day => 12;
 
     //Problem 1
-    public override object ExpectedOutput1 => 21;
+    public override object ExpectedOutput1 => 21L;
 
     public override object Solve1(string input)
     {
@@ -16,7 +16,7 @@ public class Day12 : Solver
     }
 
     //Problem 2
-    public override object ExpectedOutput2 => 525152;
+    public override object ExpectedOutput2 => 525152L;
 
     public override object Solve2(string input)
     {
