@@ -2,6 +2,15 @@ namespace AocHelpers;
 
 public static class Points
 {
+    public static (int x, int y) North = (0, -1);
+    public static (int x, int y) South = (0, 1);
+    public static (int x, int y) East = (1, 0);
+    public static (int x, int y) West = (-1, 0);
+    public static (int x, int y) Up => North;
+    public static (int x, int y) Down => South;
+    public static (int x, int y) Left => West;
+    public static (int x, int y) Right => East;
+
     public static (int x, int y) Plus(this (int x, int y) a, (int x, int y) b)
     {
         return (a.x + b.x, a.y + b.y);
