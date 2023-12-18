@@ -9,7 +9,7 @@ public class Day16 : Solver
 
     //Problem 1
     public override object ExpectedOutput1 => 46;
-    private HashSet<(int, int, int, int)> Cache { get; set; }
+    private HashSet<(int, int, int, int)> Cache { get; } = new();
 
     private IEnumerable<LightBeam> Refract(char[,] cave, LightBeam beam)
     {
@@ -112,7 +112,8 @@ public class Day16 : Solver
 
     private int CountEnergized(char[,] cave, LightBeam beam)
     {
-        this.Cache = new HashSet<(int, int, int, int)>();
+        this.Cache.Clear();
+
         List<LightBeam> beams = new List<LightBeam>() { beam };
         while (beams.Any())
         {
@@ -138,15 +139,16 @@ public class Day16 : Solver
         var candidateBeams = new List<LightBeam>();
         var width = cave.GetLength(0);
         var height = cave.GetLength(1);
-        for (var x = 0; x <width; x++)
+        for (var x = 0; x < width; x++)
         {
             candidateBeams.Add(new LightBeam((x, 0), Points.Down));
             candidateBeams.Add(new LightBeam((x, height - 1), Points.Up));
         }
+
         for (var y = 0; y < height; y++)
         {
             candidateBeams.Add(new LightBeam((0, y), Points.Right));
-            candidateBeams.Add(new LightBeam((width-1, y), Points.Left));
+            candidateBeams.Add(new LightBeam((width - 1, y), Points.Left));
         }
 
         return candidateBeams.Max(b => CountEnergized(cave, b));
