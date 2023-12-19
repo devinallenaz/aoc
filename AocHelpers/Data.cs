@@ -305,6 +305,10 @@ public static class Data
 
         return array[x, y];
     }
+    public static T? ValueOrNull<T>(this T[,] array, (int x, int y) point) where T : struct
+    {
+        return array.ValueOrNull(point.x, point.y);
+    }
 
     public static bool IsDigit(this char c)
     {
