@@ -13,13 +13,21 @@ public static class Runner
         var results = new List<TrySolveResult>();
         foreach (var solver in SolverIndex.AllSolvers.OrderBy(s => s.Day))
         {
-            results.Add(solver.TrySolve1(true));
+            if (!solver.ExpectedOutput1.Equals(Solver.NotSet))
+            {
+                results.Add(solver.TrySolve1(true));
+            }
+
             if (!testOnly)
             {
                 results.Add(solver.TrySolve1(false));
             }
 
-            results.Add(solver.TrySolve2(true));
+            if (!solver.ExpectedOutput2.Equals(Solver.NotSet))
+            {
+                results.Add(solver.TrySolve2(true));
+            }
+
             if (!testOnly)
             {
                 results.Add(solver.TrySolve2(false));
@@ -29,15 +37,30 @@ public static class Runner
         return results;
     }
 
-    public static IEnumerable<TrySolveResult> TryLatestSolver()
+    public static IEnumerable<TrySolveResult> TryLatestSolver(bool testOnly = false)
     {
         var results = new List<TrySolveResult>();
         var solver = SolverIndex.AllSolvers.OrderBy(s => s.Day).Last();
 
-        results.Add(solver.TrySolve1(true));
-        results.Add(solver.TrySolve1(false));
-        results.Add(solver.TrySolve2(true));
-        results.Add(solver.TrySolve2(false));
+        if (!solver.ExpectedOutput1.Equals(Solver.NotSet))
+        {
+            results.Add(solver.TrySolve1(true));
+        }
+
+        if (!testOnly)
+        {
+            results.Add(solver.TrySolve1(false));
+        }
+
+        if (!solver.ExpectedOutput2.Equals(Solver.NotSet))
+        {
+            results.Add(solver.TrySolve2(true));
+        }
+
+        if (!testOnly)
+        {
+            results.Add(solver.TrySolve2(false));
+        }
 
 
         return results;

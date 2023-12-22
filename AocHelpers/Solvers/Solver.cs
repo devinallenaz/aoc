@@ -6,8 +6,9 @@ namespace AocHelpers.Solvers;
 public abstract class Solver
 {
     public abstract int Day { get; }
-    public virtual object ExpectedOutput1 => "Not set";
-    public virtual object ExpectedOutput2 => "Not set";
+    public virtual object ExpectedOutput1 => NotSet;
+    public virtual object ExpectedOutput2 => NotSet;
+    public static string NotSet => "Not Set";
 
     public virtual object Solve1(string input) => "Not Implemented";
     public virtual object Solve2(string input) => "Not Implemented";
