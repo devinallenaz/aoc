@@ -75,4 +75,26 @@ public static class Points
             (x + 1, y + 1),
         };
     }
+    public static IEnumerable<(int x, int y)> AdjacentPointsCardinal(this (int x, int y) point)
+    {
+        var (x, y) = point;
+        return new List<(int x, int y)>()
+        {
+            (x - 1, y),
+            (x, y - 1),
+            (x, y + 1),
+            (x + 1, y),
+        };
+    }
+    public static IEnumerable<(long x, long y)> AdjacentPointsCardinal(this (long x, long y) point)
+    {
+        var (x, y) = point;
+        return new List<(long x, long y)>()
+        {
+            (x - 1, y),
+            (x, y - 1),
+            (x, y + 1),
+            (x + 1, y),
+        };
+    }
 }

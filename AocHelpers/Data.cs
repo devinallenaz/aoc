@@ -238,6 +238,7 @@ public static class Data
 
         return output;
     }
+
     public static int[,] To2dIntArray(this string input)
     {
         var lines = input.SplitLines();
@@ -305,9 +306,23 @@ public static class Data
 
         return array[x, y];
     }
+
     public static T? ValueOrNull<T>(this T[,] array, (int x, int y) point) where T : struct
     {
         return array.ValueOrNull(point.x, point.y);
+    }
+
+    public static int Count<T>(this T[,] array, Func<int, int, T, bool> condition)
+    {
+        var count = 0;
+        array.Traverse((x, y, c) =>
+        {
+            if (condition(x, y, c))
+            {
+                count++;
+            }
+        });
+        return count;
     }
 
     public static bool IsDigit(this char c)
