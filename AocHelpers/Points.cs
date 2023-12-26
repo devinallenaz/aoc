@@ -21,6 +21,24 @@ public static class Points
         return (a.x - b.x, a.y - b.y);
     }
 
+    public static (int x, int y, int z) Plus(this (int x, int y, int z) a, (int x, int y, int z) b)
+    {
+        return (a.x + b.x, a.y + b.y, a.z + b.z);
+    }
+
+    public static (int x, int y, int z) Minus(this (int x, int y, int z) a, (int x, int y, int z) b)
+    {
+        return (a.x - b.x, a.y - b.y, a.z - b.z);
+    }
+    public static (int x, int y, int z) Minus(this (int x, int y, int z) a, int bx, int by, int bz)
+    {
+        return (a.x - bx, a.y - by, a.z - bz);
+    }
+    public static (int x, int y, int z) Clamp(this (int x, int y, int z) point, int min, int max)
+    {
+        return (Math.Clamp(point.x, min, max), Math.Clamp(point.y, min, max), Math.Clamp(point.z, min, max));
+    }
+
     public static (int x, long y) Plus(this (int x, long y) a, (int x, long y) b)
     {
         return (a.x + b.x, a.y + b.y);
@@ -75,6 +93,7 @@ public static class Points
             (x + 1, y + 1),
         };
     }
+
     public static IEnumerable<(int x, int y)> AdjacentPointsCardinal(this (int x, int y) point)
     {
         var (x, y) = point;
@@ -86,6 +105,7 @@ public static class Points
             (x + 1, y),
         };
     }
+
     public static IEnumerable<(long x, long y)> AdjacentPointsCardinal(this (long x, long y) point)
     {
         var (x, y) = point;
