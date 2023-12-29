@@ -402,4 +402,14 @@ public static class Data
 
         return result;
     }
+
+    public static bool Between(this decimal source, decimal min, decimal max, bool exclusive = false)
+    {
+        if (exclusive)
+        {
+            return source > min && source < max;
+        }
+
+        return source >= min && source <= max;
+    }
 }
