@@ -9,12 +9,12 @@ public class Day23 : Solver
     //Problem 1
     public override object ExpectedOutput1 => 94;
 
-    private Dictionary<(int, int), Node> BuildGraph(char[,] forest, bool respectSlopes = true)
+    private Dictionary<(int, int), Node<(int,int)>> BuildGraph(char[,] forest, bool respectSlopes = true)
     {
         var (start, end) = FindStartEnd(forest);
-        var graph = new Dictionary<(int, int), Node>();
-        graph.Add(start, new Node(start));
-        graph.Add(end, new Node(end));
+        var graph = new Dictionary<(int, int), Node<(int,int)>>();
+        graph.Add(start, new Node<(int,int)>(start));
+        graph.Add(end, new Node<(int,int)>(end));
         foreach (var next in NextPositions(forest, start, null, respectSlopes))
         {
             FollowPath(forest, graph, start, next, respectSlopes);
@@ -23,7 +23,7 @@ public class Day23 : Solver
         return graph;
     }
 
-    private Node? FollowPath(char[,] forest, Dictionary<(int, int), Node> graph, (int, int) fromNodePosition, (int x, int y) dir, bool respectSlopes = true)
+    private Node<(int,int)>? FollowPath(char[,] forest, Dictionary<(int, int), Node<(int,int)>> graph, (int, int) fromNodePosition, (int x, int y) dir, bool respectSlopes = true)
     {
         var previousPosition = fromNodePosition;
         var currentPosition = dir;
@@ -39,7 +39,7 @@ public class Day23 : Solver
 
         if (!graph.ContainsKey(currentPosition))
         {
-            var node = new Node(currentPosition);
+            var node = new Node<(int,int)>(currentPosition);
             graph[currentPosition] = node;
             nextPositions.Add(previousPosition);
             foreach (var nextDir in nextPositions)
@@ -118,7 +118,7 @@ public class Day23 : Solver
         return (start, end);
     }
 
-    private int LongestPath(Dictionary<(int, int), Node> graph, (int, int) start, (int, int) end, HashSet<(int, int)>? traversed = null)
+    private int LongestPath(Dictionary<(int, int), Node<(int,int)>> graph, (int, int) start, (int, int) end, HashSet<(int, int)>? traversed = null)
     {
         if (start == end)
         {
@@ -130,13 +130,13 @@ public class Day23 : Solver
             traversed = new HashSet<(int, int)>();
         }
 
-        var nextNeighbors = graph[start].Neighbors.Where(n => !traversed.Contains(n.node.Location)).ToList();
+        var nextNeighbors = graph[start].Neighbors.Where(n => !traversed.Contains(n.node.Label)).ToList();
         if (!nextNeighbors.Any())
         {
             return int.MinValue;
         }
 
-        return nextNeighbors.Max(n => n.distance + LongestPath(graph, n.node.Location, end, traversed.Append(n.node.Location).ToHashSet()));
+        return nextNeighbors.Max(n => n.distance + LongestPath(graph, n.node.Label, end, traversed.Append(n.node.Label).ToHashSet()));
     }
 
     public override object Solve1(string input)
