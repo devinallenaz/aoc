@@ -1,14 +1,9 @@
 namespace Aoc2023.Models;
 
-public class Node<T>
+public class Node<T>(T location)
 {
-    public List<(Node<T> node, int distance)> Neighbors { get; } = new();
-    public T Label { get; }
-
-    public Node(T location)
-    {
-        this.Label = location;
-    }
+    public List<(Node<T> node, int distance)> Neighbors { get; } = [];
+    public T Label { get; } = location;
 
 
     public void AddNeighbor(Node<T> node, int distance)

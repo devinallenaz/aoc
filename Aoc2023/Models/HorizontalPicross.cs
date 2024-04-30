@@ -6,7 +6,7 @@ public class HorizontalPicross
 {
     private int[] Clue { get; }
     private bool?[] Puzzle { get; }
-    private Dictionary<(bool, int, int, int), long> Cache { get; } = new Dictionary<(bool, int, int, int), long>();
+    private Dictionary<(bool, int, int, int), long> Cache { get; } = new();
 
     public HorizontalPicross(string init, int copies = 1)
     {

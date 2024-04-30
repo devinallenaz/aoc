@@ -122,9 +122,9 @@ public static class Data
     {
         var width = input.GetLength(0);
         var height = input.GetLength(1);
-        for (int x = 0; x < width; x++)
+        for (var x = 0; x < width; x++)
         {
-            for (int y = 0; y < height; y++)
+            for (var y = 0; y < height; y++)
             {
                 if (test(input[x, y], x, y))
                 {
@@ -194,12 +194,13 @@ public static class Data
 
     public static IEnumerable<IEnumerable<T>> AllSubSets<T>(this IEnumerable<T> source)
     {
-        if (!source.Any())
+        var enumerable = source.ToList();
+        if (enumerable.Count == 0)
             return Enumerable.Repeat(Enumerable.Empty<T>(), 1);
 
-        var element = source.Take(1);
+        var element = enumerable.Take(1);
 
-        var haveNots = source.Skip(1).AllSubSets();
+        var haveNots = enumerable.Skip(1).AllSubSets().ToList();
         var haves = haveNots.Select(set => element.Concat(set));
 
         return haves.Concat(haveNots);

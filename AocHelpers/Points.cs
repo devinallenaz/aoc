@@ -1,40 +1,42 @@
 namespace AocHelpers;
-
+using Point = (int x, int y);
+using LongPoint = (long x, long y);
+using Point3d = (int x, int y, int z);
 public static class Points
 {
-    public static (int x, int y) North = (0, -1);
-    public static (int x, int y) South = (0, 1);
-    public static (int x, int y) East = (1, 0);
-    public static (int x, int y) West = (-1, 0);
-    public static (int x, int y) Up => North;
-    public static (int x, int y) Down => South;
-    public static (int x, int y) Left => West;
-    public static (int x, int y) Right => East;
+    public static Point North = (0, -1);
+    public static Point South = (0, 1);
+    public static Point East = (1, 0);
+    public static Point West = (-1, 0);
+    public static Point Up => North;
+    public static Point Down => South;
+    public static Point Left => West;
+    public static Point Right => East;
 
-    public static (int x, int y) Plus(this (int x, int y) a, (int x, int y) b)
+    public static Point Plus(this Point a, Point b)
     {
         return (a.x + b.x, a.y + b.y);
     }
 
-    public static (int x, int y) Minus(this (int x, int y) a, (int x, int y) b)
+    public static Point Minus(this Point a, Point b)
     {
         return (a.x - b.x, a.y - b.y);
     }
 
-    public static (int x, int y, int z) Plus(this (int x, int y, int z) a, (int x, int y, int z) b)
+    public static Point3d Plus(this Point3d a, Point3d b)
     {
         return (a.x + b.x, a.y + b.y, a.z + b.z);
     }
 
-    public static (int x, int y, int z) Minus(this (int x, int y, int z) a, (int x, int y, int z) b)
+    public static Point3d Minus(this Point3d a, Point3d b)
     {
         return (a.x - b.x, a.y - b.y, a.z - b.z);
     }
-    public static (int x, int y, int z) Minus(this (int x, int y, int z) a, int bx, int by, int bz)
+    public static Point3d Minus(this Point3d a, int bx, int by, int bz)
     {
         return (a.x - bx, a.y - by, a.z - bz);
     }
-    public static (int x, int y, int z) Clamp(this (int x, int y, int z) point, int min, int max)
+    public static Point3d Clamp(this Point3d point, int min, int max)
     {
         return (Math.Clamp(point.x, min, max), Math.Clamp(point.y, min, max), Math.Clamp(point.z, min, max));
     }
@@ -49,22 +51,22 @@ public static class Points
         return (a.x - b.x, a.y - b.y);
     }
 
-    public static (long x, long y) Plus(this (long x, long y) a, (long x, long y) b)
+    public static LongPoint Plus(this LongPoint a, LongPoint b)
     {
         return (a.x + b.x, a.y + b.y);
     }
 
-    public static int TaxiDistance(this (int x, int y) point1, (int x, int y) point2)
+    public static int TaxiDistance(this Point point1, Point point2)
     {
         return Math.Abs(point2.x - point1.x) + Math.Abs(point2.y - point1.y);
     }
 
-    public static long TaxiDistance(this (long x, long y) point1, (long x, long y) point2)
+    public static long TaxiDistance(this LongPoint point1, LongPoint point2)
     {
         return Math.Abs(point2.x - point1.x) + Math.Abs(point2.y - point1.y);
     }
 
-    public static IEnumerable<(int x, int y)> ManhattanCircle((int x, int y) center, int distance)
+    public static IEnumerable<Point> ManhattanCircle(Point center, int distance)
     {
         for (int x = -distance; x <= distance; x++)
         {
@@ -78,10 +80,10 @@ public static class Points
         }
     }
 
-    public static IEnumerable<(int x, int y)> AdjacentPoints(this (int x, int y) point)
+    public static IEnumerable<Point> AdjacentPoints(this Point point)
     {
         var (x, y) = point;
-        return new List<(int x, int y)>()
+        return new List<Point>()
         {
             (x - 1, y - 1),
             (x - 1, y),
@@ -94,10 +96,10 @@ public static class Points
         };
     }
 
-    public static IEnumerable<(int x, int y)> AdjacentPointsCardinal(this (int x, int y) point)
+    public static IEnumerable<Point> AdjacentPointsCardinal(this Point point)
     {
         var (x, y) = point;
-        return new List<(int x, int y)>()
+        return new List<Point>()
         {
             (x - 1, y),
             (x, y - 1),
@@ -106,10 +108,10 @@ public static class Points
         };
     }
 
-    public static IEnumerable<(long x, long y)> AdjacentPointsCardinal(this (long x, long y) point)
+    public static IEnumerable<LongPoint> AdjacentPointsCardinal(this LongPoint point)
     {
         var (x, y) = point;
-        return new List<(long x, long y)>()
+        return new List<LongPoint>()
         {
             (x - 1, y),
             (x, y - 1),
