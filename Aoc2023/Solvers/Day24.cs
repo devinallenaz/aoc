@@ -56,7 +56,7 @@ public class Day24 : Solver
     }
 
     //Problem 2
-    public override object ExpectedOutput2 => 47d;
+    public override object ExpectedOutput2 => 47l;
 
     public override object Solve2(string input)
     {
