@@ -38,13 +38,13 @@ public class Day5 : Solver
     
     private static (Stack<char>[], List<Move>) StacksAndMovesFromData(string input)
     {
-        var sections = input.SplitSections();
+        var sections = input.SplitSections(false);
         return (StacksFromData(sections.First()), MovesFromData(sections.Last()));
     }
 
     private static List<Move> MovesFromData(string input)
     {
-        return input.SplitLines().Select(MoveFromLine).ToList();
+        return input.SplitLines(false).Select(MoveFromLine).ToList();
     }
 
     private static Move MoveFromLine(string line)
@@ -56,7 +56,7 @@ public class Day5 : Solver
 
     private static Stack<char>[] StacksFromData(string input)
     {
-        var lines = input.SplitLines().ToList();
+        var lines = input.SplitLines(false).ToList();
         int numberOfStacks = lines.Last().Slices(4).Last().Skip(1).First().ToNumericInt();
         var stacks = new Stack<char>[numberOfStacks];
         lines.Take(lines.Count() - 1).Reverse().ToList().ForEach(line => ParseAndPushLineToStacks(line, stacks));

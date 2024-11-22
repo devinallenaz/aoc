@@ -9,7 +9,7 @@ public class Day2 : Solver
 {
     public override int Day => 2;
     public override object ExpectedOutput1 => 15;
-    public override object ExpectedOutput2 => 45000;
+    public override object ExpectedOutput2 => 12;
 
     public override object Solve1(string input)
     {
@@ -26,7 +26,7 @@ public class Day2 : Solver
 
     public static List<RpsGame> RpsGamesFromData(string input)
     {
-        return input.SplitLines().Select((g, i) =>
+        return input.SplitLines(false).Select((g, i) =>
         {
             var plays = g.Split();
             return new RpsGame(i, plays[0], plays[1]);
@@ -35,7 +35,7 @@ public class Day2 : Solver
 
     public static List<RpsGame> RpsGamesFromPreferredOutcomeData(string input)
     {
-        return input.SplitLines().Select((g, i) =>
+        return input.SplitLines(false).Select((g, i) =>
         {
             var plays = g.Split();
             return new RpsGameWithPreferredOutcome(i, plays[0], plays[1]);

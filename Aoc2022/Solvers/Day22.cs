@@ -30,7 +30,7 @@ public class Day22 : Solver
 
     public static Character CharacterOnMapFromData(string input, int? cubeSize = null)
     {
-        var sections = input.SplitSections().ToArray();
+        var sections = input.SplitSections(false).ToArray();
 
         var moves = MovesFromMoveData(sections[1]);
         var startingTile = MapFromMapData(sections[0], cubeSize);
@@ -61,7 +61,7 @@ public class Day22 : Solver
 
     private static Tile MapFromMapData(string moveString, int? cubeSize)
     {
-        var lines = moveString.SplitLines().ToArray();
+        var lines = moveString.SplitLines(false).ToArray();
         Tile? firstInLine = null;
         Tile? previous = null;
         Tile? startingTile = null;

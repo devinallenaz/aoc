@@ -11,12 +11,12 @@ public static class Data
 
     public static IEnumerable<string> SplitSections(this string input, bool andTrim = true)
     {
-        return (andTrim ? input.SplitAndTrim("\n\n") : input.Split("\n")).NonEmpty();
+        return (andTrim ? input.SplitAndTrim("\n\n") : input.Split("\n\n")).NonEmpty();
     }
 
     public static IEnumerable<string> SplitCommas(this string input, bool andTrim = true)
     {
-        return (andTrim ? input.SplitAndTrim(",") : input.Split("\n")).NonEmpty();
+        return (andTrim ? input.SplitAndTrim(",") : input.Split(",")).NonEmpty();
     }
 
     public static IEnumerable<string> SplitAndTrim(this string input)
