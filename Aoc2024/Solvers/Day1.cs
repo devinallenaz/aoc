@@ -8,7 +8,7 @@ public class Day1 : Solver
     //Problem 1
     public override object ExpectedOutput1 => 11;
 
-    private (List<int> left, List<int> right) BuildLists(string input)
+    private static (List<int> left, List<int> right) BuildLists(string input)
     {
         var left = new List<int>();
         var right = new List<int>();
