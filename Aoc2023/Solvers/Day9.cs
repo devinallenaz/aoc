@@ -15,7 +15,7 @@ public class Day9 : Solver
             return 0;
         }
 
-        return input.Last() + Next(Differences(input));
+        return input.Last() + Next(input.Differences());
     }
 
     private int Previous(int[] input)
