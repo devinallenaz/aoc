@@ -25,18 +25,7 @@ public class Day9 : Solver
             return 0;
         }
 
-        return input.First() - Previous(Differences(input));
-    }
-
-    private int[] Differences(int[] input)
-    {
-        var output = new int[input.Length - 1];
-        for (var i = 0; i < input.Length - 1; i++)
-        {
-            output[i] = input[i + 1] - input[i];
-        }
-
-        return output;
+        return input.First() - Previous(input.Differences());
     }
 
     public override object Solve1(string input)

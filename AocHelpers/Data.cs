@@ -413,4 +413,25 @@ public static class Data
 
         return source >= min && source <= max;
     }
+
+    public static bool Between(this int source, int min, int max, bool exclusive = false)
+    {
+        if (exclusive)
+        {
+            return source > min && source < max;
+        }
+
+        return source >= min && source <= max;
+    }
+
+    public static int[] Differences(this int[] input)
+    {
+        var output = new int[input.Length - 1];
+        for (var i = 0; i < input.Length - 1; i++)
+        {
+            output[i] = input[i + 1] - input[i];
+        }
+
+        return output;
+    }
 }
