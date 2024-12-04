@@ -4,10 +4,18 @@ using LongPoint = (long x, long y);
 using Point3d = (int x, int y, int z);
 public static class Points
 {
-    public static Point North = (0, -1);
-    public static Point South = (0, 1);
-    public static Point East = (1, 0);
-    public static Point West = (-1, 0);
+    public static readonly Point North = (0, -1);
+    public static readonly Point South = (0, 1);
+    public static readonly Point East = (1, 0);
+    public static readonly Point West = (-1, 0);
+
+    public static readonly Point NorthWest = North.Plus(West);
+    public static readonly Point NorthEast = North.Plus(East);
+    public static readonly Point SouthWest = South.Plus(West);
+    public static readonly Point SouthEast = South.Plus(East);
+    public static readonly Point[] CardinalDirections = [North, South, East, West];
+    public static readonly Point[] DiagonalDirections = [NorthWest, NorthEast, SouthWest, SouthEast];
+    public static readonly Point[] AllDirections = [..CardinalDirections, ..DiagonalDirections];
     public static Point Up => North;
     public static Point Down => South;
     public static Point Left => West;
