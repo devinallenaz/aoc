@@ -20,6 +20,10 @@ public static class Points
     public static Point Down => South;
     public static Point Left => West;
     public static Point Right => East;
+    public static Point UpLeft = NorthWest;
+    public static Point UpRight = NorthEast;
+    public static Point DownLeft = SouthWest;
+    public static Point DownRight = SouthEast;
 
     public static Point Plus(this Point a, Point b)
     {
