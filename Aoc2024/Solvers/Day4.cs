@@ -49,8 +49,8 @@ public class Day4 : Solver
             var center = (x, y);
             if (c == 'A')
             {
-                char?[] diagonal1 = [grid.ValueOrNull(center.Plus(Points.NorthWest)), grid.ValueOrNull(center.Plus(Points.SouthEast))];
-                char?[] diagonal2 = [grid.ValueOrNull(center.Plus(Points.NorthEast)), grid.ValueOrNull(center.Plus(Points.SouthWest))];
+                char?[] diagonal1 = [grid.ValueOrNull(center.Plus(Points.UpLeft)), grid.ValueOrNull(center.Plus(Points.DownRight))];
+                char?[] diagonal2 = [grid.ValueOrNull(center.Plus(Points.UpRight)), grid.ValueOrNull(center.Plus(Points.DownLeft))];
                 if (diagonal1.Contains('M') && diagonal1.Contains('S') && diagonal2.Contains('M') && diagonal2.Contains('S'))
                 {
                     count++;
