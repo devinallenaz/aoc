@@ -356,6 +356,11 @@ public static class Data
     {
         return (source.First(), source.Skip(1));
     }
+    
+    public static (T Head, T Last) FirstAndLast<T>(this IEnumerable<T> source)
+    {
+        return (source.First(), source.Last());
+    }
 
     public static TProduct Product<TSource, TProduct>(this IEnumerable<TSource> input, Func<TSource, TProduct> selector) where TProduct : IMultiplyOperators<TProduct, TProduct, TProduct>
     {
