@@ -298,6 +298,7 @@ public static class Data
         return output;
     }
 
+
     public static T? ValueOrNull<T>(this T[,] array, int x, int y) where T : struct
     {
         if (x < 0 || x >= array.GetLength(0) || y < 0 || y >= array.GetLength(1))
@@ -356,7 +357,7 @@ public static class Data
     {
         return (source.First(), source.Skip(1));
     }
-    
+
     public static (T Head, T Last) FirstAndLast<T>(this IEnumerable<T> source)
     {
         return (source.First(), source.Last());

@@ -35,6 +35,16 @@ public static class Points
         return (a.x - b.x, a.y - b.y);
     }
 
+    public static Point RotateClockwise(this Point a)
+    {
+        return (-a.y, a.x);
+    }
+
+    public static Point RotateCounterClockwise(this Point a)
+    {
+        return (a.y, -a.x);
+    }
+
     public static Point3d Plus(this Point3d a, Point3d b)
     {
         return (a.x + b.x, a.y + b.y, a.z + b.z);
