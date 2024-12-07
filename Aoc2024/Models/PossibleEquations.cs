@@ -53,8 +53,7 @@ public class PossibleEquation
         {
             return -1;
         }
-
-
+        
         return long.Parse(completeString.Substring(0, completeString.Length - partString.Length));
     }
 }
