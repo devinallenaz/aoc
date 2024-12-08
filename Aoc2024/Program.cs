@@ -3,5 +3,5 @@
 using AocHelpers;
 
 Runner.Year = 2024;
-var results = Runner.TrySolveAllSolvers();
+var results = Runner.TryLatestSolver();
 Runner.OutputFormattedResults(results);

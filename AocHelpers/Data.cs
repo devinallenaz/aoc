@@ -298,10 +298,19 @@ public static class Data
         return output;
     }
 
+    public static bool ContainsCoordinate<T>(this T[,] array, int x, int y) where T : struct
+    {
+        return x.Between(0, array.GetLength(0) - 1) && y.Between(0, array.GetLength(1) - 1);
+    }
+
+    public static bool ContainsCoordinate<T>(this T[,] array, (int x, int y) point) where T : struct
+    {
+        return array.ContainsCoordinate(point.x, point.y);
+    }
 
     public static T? ValueOrNull<T>(this T[,] array, int x, int y) where T : struct
     {
-        if (x < 0 || x >= array.GetLength(0) || y < 0 || y >= array.GetLength(1))
+        if (!x.Between(0, array.GetLength(0) - 1) || !y.Between(0, array.GetLength(1) - 1))
         {
             return null;
         }
@@ -420,14 +429,14 @@ public static class Data
         return source >= min && source <= max;
     }
 
-    public static bool Between(this int source, int min, int max, bool exclusive = false)
+    public static bool Between(this int source, int min, int max, bool inclusive = true)
     {
-        if (exclusive)
+        if (inclusive)
         {
-            return source > min && source < max;
+            return source >= min && source <= max;
         }
 
-        return source >= min && source <= max;
+        return source > min && source < max;
     }
 
     public static int[] Differences(this int[] input)
