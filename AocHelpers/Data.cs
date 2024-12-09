@@ -223,6 +223,14 @@ public static class Data
         }
     }
 
+    public static void Times(this int times, Action a)
+    {
+        for (var i = 0; i < times; i++)
+        {
+            a();
+        }
+    }
+
     public static char[,] To2dCharArray(this string input)
     {
         var lines = input.SplitLines();
