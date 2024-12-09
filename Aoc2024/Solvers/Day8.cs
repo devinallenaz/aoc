@@ -12,10 +12,9 @@ public class Day8 : Solver
     {
         var (grid, nodesByFrequency) = Setup(input);
         var antinodes = new List<(int x, int y)>();
-        foreach (var key in nodesByFrequency.Keys)
+        foreach (var frequency in nodesByFrequency.Keys)
         {
-            var points = nodesByFrequency[key];
-            foreach (var (first, second) in points.AllPairs())
+            foreach (var (first, second) in nodesByFrequency[frequency].AllPairs())
             {
                 var vector = second.Minus(first);
                 antinodes.Add(first.Minus(vector));
@@ -34,10 +33,9 @@ public class Day8 : Solver
     {
         var (grid, nodesByFrequency) = Setup(input);
         var antinodes = new List<(int x, int y)>();
-        foreach (var key in nodesByFrequency.Keys)
+        foreach (var frequency in nodesByFrequency.Keys)
         {
-            var points = nodesByFrequency[key];
-            foreach (var (first, second) in points.AllPairs())
+            foreach (var (first, second) in nodesByFrequency[frequency].AllPairs())
             {
                 antinodes.Add(second);
                 var vector = second.Minus(first);
