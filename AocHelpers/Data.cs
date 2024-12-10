@@ -1,4 +1,5 @@
 using System.Numerics;
+using Point = (int x, int y);
 
 namespace AocHelpers;
 
@@ -293,7 +294,7 @@ public static class Data
         return output;
     }
 
-    public static (int x, int y) Find<T>(this T[,] array, T target)
+    public static Point Find<T>(this T[,] array, T target)
     {
         var output = (-1, -1);
         array.Traverse((x, y, v) =>
@@ -306,12 +307,26 @@ public static class Data
         return output;
     }
 
+    public static IEnumerable<Point> FindAll<T>(this T[,] array, T target)
+    {
+        for (var y = 0; y < array.GetLength(1); y++)
+        {
+            for (var x = 0; x < array.GetLength(0); x++)
+            {
+                if (array[x, y]?.Equals(target) ?? false)
+                {
+                    yield return (x, y);
+                }
+            }
+        }
+    }
+
     public static bool ContainsCoordinate<T>(this T[,] array, int x, int y) where T : struct
     {
         return x.Between(0, array.GetLength(0) - 1) && y.Between(0, array.GetLength(1) - 1);
     }
 
-    public static bool ContainsCoordinate<T>(this T[,] array, (int x, int y) point) where T : struct
+    public static bool ContainsCoordinate<T>(this T[,] array, Point point) where T : struct
     {
         return array.ContainsCoordinate(point.x, point.y);
     }
@@ -326,7 +341,7 @@ public static class Data
         return array[x, y];
     }
 
-    public static T? ValueOrNull<T>(this T[,] array, (int x, int y) point) where T : struct
+    public static T? ValueOrNull<T>(this T[,] array, Point point) where T : struct
     {
         return array.ValueOrNull(point.x, point.y);
     }
