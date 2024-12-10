@@ -51,7 +51,6 @@ public class Day10 : Solver
     {
         var grid = input.To2dIntArray();
         var startingPoints = grid.FindAll(0);
-        var first = ReachableTrails(grid, startingPoints.First(), 0);
         return startingPoints.Sum(p => ReachableTrails(grid, p, 0));
     }
 }
