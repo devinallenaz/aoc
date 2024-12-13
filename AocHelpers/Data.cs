@@ -47,6 +47,22 @@ public static class Data
             yield return i;
         }
     }
+    public static IEnumerable<long> LongRange(long start, long end)
+    {
+        for (var i = start; i <= end; i++)
+        {
+            yield return i;
+        }
+    }
+
+    public static bool RoundsToWholeNumber(this double input)
+    {
+        return Math.Abs(input % 1) < 0.00000001 || Math.Abs(input % 1) > 0.999999999;
+    }
+    public static bool RoundsToWholeNumber(this decimal input)
+    {
+        return (input % 1).Between(-0.00000001m, 0.00000001m) || (input % 1) > 0.999999999m || (input % 1) < -0.999999999m;
+    }
 
     public static IEnumerable<IEnumerable<T>> Slices<T>(this IEnumerable<T> input, int size)
     {
