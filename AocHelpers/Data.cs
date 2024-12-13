@@ -249,6 +249,23 @@ public static class Data
         return output;
     }
 
+    public static Dictionary<Point,char> ToDictionary(this string input)
+    {
+        var lines = input.SplitLines();
+        var width = lines.First().Length;
+        var height = lines.Count();
+        var output = new Dictionary<Point,char>();
+        foreach (var (line, y) in lines.WithIndex())
+        {
+            foreach (var (c, x) in line.WithIndex())
+            {
+                output[(x, y)] = c;
+            }
+        }
+
+        return output;
+    }
+
     public static int[,] To2dIntArray(this string input)
     {
         var lines = input.SplitLines();
