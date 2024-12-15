@@ -47,6 +47,7 @@ public static class Data
             yield return i;
         }
     }
+
     public static IEnumerable<long> LongRange(long start, long end)
     {
         for (var i = start; i <= end; i++)
@@ -59,6 +60,7 @@ public static class Data
     {
         return Math.Abs(input % 1) < 0.00000001 || Math.Abs(input % 1) > 0.999999999;
     }
+
     public static bool RoundsToWholeNumber(this decimal input)
     {
         return (input % 1).Between(-0.00000001m, 0.00000001m) || (input % 1) > 0.999999999m || (input % 1) < -0.999999999m;
@@ -265,12 +267,12 @@ public static class Data
         return output;
     }
 
-    public static Dictionary<Point,char> ToDictionary(this string input)
+    public static Dictionary<Point, char> ToDictionary(this string input)
     {
         var lines = input.SplitLines();
         var width = lines.First().Length;
         var height = lines.Count();
-        var output = new Dictionary<Point,char>();
+        var output = new Dictionary<Point, char>();
         foreach (var (line, y) in lines.WithIndex())
         {
             foreach (var (c, x) in line.WithIndex())
@@ -504,5 +506,36 @@ public static class Data
         }
 
         return output;
+    }
+
+    public static void Visualize<T>(this T[,] grid)
+    {
+        for (int y = 0; y < grid.GetLength(1); y++)
+        {
+            for (int x = 0; x < grid.GetLength(0); x++)
+            {
+                if (0.Equals(grid[x, y]))
+                {
+                    Console.Write(".");
+                }
+                else
+                {
+                    Console.Write(grid[x, y]);
+                }
+            }
+
+            Console.Write('\n');
+        }
+    }
+
+    public static void Traverse(this Point dimensions, Action<int, int> action)
+    {
+        for (var y = 0; y < dimensions.y; y++)
+        {
+            for (var x = 0; x < dimensions.x; x++)
+            {
+                action(x, y);
+            }
+        }
     }
 }
