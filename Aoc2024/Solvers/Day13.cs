@@ -68,8 +68,10 @@ public partial class Day13 : Solver
         return claws.Sum(MinimumCostForPrize);
     }
 
-    [GeneratedRegex(@"Button A: X\+(\d+), Y\+(\d+)
-Button B: X\+(\d+), Y\+(\d+)
-Prize: X=(\d+), Y=(\d+)", RegexOptions.Multiline)]
+    [GeneratedRegex("""
+                    Button A: X\+(\d+), Y\+(\d+)
+                    Button B: X\+(\d+), Y\+(\d+)
+                    Prize: X=(\d+), Y=(\d+)
+                    """, RegexOptions.Multiline)]
     private static partial Regex InputRegex();
 }
