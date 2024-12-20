@@ -342,6 +342,25 @@ public static class Data
         return output;
     }
 
+    public static (Point, Point) Find<T>(this T[,] array, T target1, T target2)
+    {
+        var point1 = (-1, -1);
+        var point2 = (-1, -1);
+        array.Traverse((x, y, v) =>
+        {
+            if (v?.Equals(target1) ?? false)
+            {
+                point1 = (x, y);
+            }
+
+            if (v?.Equals(target2) ?? false)
+            {
+                point2 = (x, y);
+            }
+        });
+        return (point1, point2);
+    }
+
     public static IEnumerable<Point> FindAll<T>(this T[,] array, T target)
     {
         for (var y = 0; y < array.GetLength(1); y++)
