@@ -5,34 +5,34 @@ namespace AocHelpers;
 
 public static class Data
 {
-    public static IEnumerable<string> SplitLines(this string input, bool andTrim = true)
+    public static string[] SplitLines(this string input, bool andTrim = true)
     {
-        return (andTrim ? input.SplitAndTrim("\n") : input.Split("\n")).NonEmpty();
+        return (andTrim ? input.SplitAndTrim("\n") : input.Split("\n")).NonEmpty().ToArray();
     }
 
-    public static IEnumerable<string> SplitSections(this string input, bool andTrim = true)
+    public static string[] SplitSections(this string input, bool andTrim = true)
     {
-        return (andTrim ? input.SplitAndTrim("\n\n") : input.Split("\n\n")).NonEmpty();
+        return (andTrim ? input.SplitAndTrim("\n\n") : input.Split("\n\n")).NonEmpty().ToArray();
     }
 
-    public static IEnumerable<string> SplitCommas(this string input, bool andTrim = true)
+    public static string[] SplitCommas(this string input, bool andTrim = true)
     {
-        return (andTrim ? input.SplitAndTrim(",") : input.Split(",")).NonEmpty();
+        return (andTrim ? input.SplitAndTrim(",") : input.Split(",")).NonEmpty().ToArray();
     }
 
-    public static IEnumerable<string> SplitAndTrim(this string input)
+    public static string[] SplitAndTrim(this string input)
     {
-        return input.Split().Select(s => s.Trim()).NonEmpty();
+        return input.Split().Select(s => s.Trim()).NonEmpty().ToArray();
     }
 
-    public static IEnumerable<string> SplitAndTrim(this string input, string separator)
+    public static string[] SplitAndTrim(this string input, string separator)
     {
-        return input.Split(separator).Select(s => s.Trim()).NonEmpty();
+        return input.Split(separator).Select(s => s.Trim()).NonEmpty().ToArray();
     }
 
-    public static IEnumerable<string> NonEmpty(this IEnumerable<string> input)
+    public static string[] NonEmpty(this IEnumerable<string> input)
     {
-        return input.Where(s => !string.IsNullOrWhiteSpace(s));
+        return input.Where(s => !string.IsNullOrWhiteSpace(s)).ToArray();
     }
 
     public static IEnumerable<T> NonNull<T>(this IEnumerable<T?> input)
@@ -364,6 +364,11 @@ public static class Data
     public static bool ContainsCoordinate<T>(this T[,] array, Point point) where T : struct
     {
         return array.ContainsCoordinate(point.x, point.y);
+    }
+
+    public static bool InBounds(this Point point, Point farCorner)
+    {
+        return point.x.Between(0, farCorner.x) && point.y.Between(0, farCorner.y);
     }
 
     public static T? ValueOrNull<T>(this T[,] array, int x, int y) where T : struct
