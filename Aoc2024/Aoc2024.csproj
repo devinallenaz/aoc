@@ -12,7 +12,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Input\" />
       <Folder Include="Solvers\" />
     </ItemGroup>
 
