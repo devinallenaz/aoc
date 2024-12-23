@@ -60,7 +60,7 @@ public class Day11 : Solver
     {
         var (galaxies, allX, allY, maxX, maxY) = InitGalaxies(input);
         ExpandGalaxies(galaxies, maxX, maxY, allX, allY);
-        return galaxies.AllPairs().Sum(s => Points.TaxiDistance(s.Item1, s.Item2));
+        return galaxies.AllPairs().Sum(s => Points.ManhattanDistance(s.Item1, s.Item2));
     }
 
     //Problem 2
@@ -70,6 +70,6 @@ public class Day11 : Solver
     {
         var (galaxies, allX, allY, maxX, maxY) = InitGalaxies(input);
         ExpandGalaxies(galaxies, maxX, maxY, allX, allY, 999999L);
-        return galaxies.AllPairs().Sum(s => Points.TaxiDistance(s.Item1, s.Item2));
+        return galaxies.AllPairs().Sum(s => Points.ManhattanDistance(s.Item1, s.Item2));
     }
 }

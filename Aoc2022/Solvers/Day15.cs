@@ -17,7 +17,7 @@ public class Day15 : Solver
         var count = 0;
         for (int x = -10000; x < 10000; x++)
         {
-            if (sensorBeacons.Any(sb => (x, y).TaxiDistance(sb.sensor) <= sb.distance && (x, y) != sb.beacon))
+            if (sensorBeacons.Any(sb => (x, y).ManhattanDistance(sb.sensor) <= sb.distance && (x, y) != sb.beacon))
             {
                 count++;
             }
@@ -39,7 +39,7 @@ public class Day15 : Solver
 
         foreach (var candidate in candidates)
         {
-            if (sensorBeacons.All(sb => candidate.TaxiDistance(sb.sensor) > sb.distance))
+            if (sensorBeacons.All(sb => candidate.ManhattanDistance(sb.sensor) > sb.distance))
             {
                 return candidate.x * 4000000L + candidate.y;
             }
@@ -59,7 +59,7 @@ public class Day15 : Solver
             {
                 var sensor = (int.Parse(m.Groups[1].Value), int.Parse(m.Groups[2].Value));
                 var beacon = (int.Parse(m.Groups[3].Value), int.Parse(m.Groups[4].Value));
-                var distance = sensor.TaxiDistance(beacon);
+                var distance = sensor.ManhattanDistance(beacon);
                 return (sensor, beacon, distance);
             }
         ).ToList(), y1, bound);

@@ -78,12 +78,12 @@ public static class Points
         return (a.x + b.x, a.y + b.y);
     }
 
-    public static int TaxiDistance(this Point point1, Point point2)
+    public static int ManhattanDistance(this Point point1, Point point2)
     {
         return Math.Abs(point2.x - point1.x) + Math.Abs(point2.y - point1.y);
     }
 
-    public static long TaxiDistance(this LongPoint point1, LongPoint point2)
+    public static long ManhattanDistance(this LongPoint point1, LongPoint point2)
     {
         return Math.Abs(point2.x - point1.x) + Math.Abs(point2.y - point1.y);
     }

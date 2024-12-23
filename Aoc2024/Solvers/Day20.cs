@@ -62,7 +62,7 @@ public class Day20 : Solver
         {
             var originalPoint = scoredPoint.Key;
             var originalScore = scoredPoint.Value;
-            foreach (var otherWithDistance in scoredPoints.Select(other => (other, other.Key.TaxiDistance(originalPoint))).Where(other => other.Item2 <= 20))
+            foreach (var otherWithDistance in scoredPoints.Select(other => (other, other.Key.ManhattanDistance(originalPoint))).Where(other => other.Item2 <= 20))
             {
                 var otherPoint = otherWithDistance.other.Key;
                 var otherScore = otherWithDistance.other.Value;
