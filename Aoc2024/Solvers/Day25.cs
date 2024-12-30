@@ -44,19 +44,7 @@ public class Day25 : Solver
             }
         }
 
-        var fits = 0;
-        foreach (var key in keys)
-        {
-            foreach (var @lock in locks)
-            {
-                if (KeyFitsLock(key, @lock))
-                {
-                    fits++;
-                }
-            }
-        }
-
-        return fits;
+        return keys.Sum(k => locks.Count(l => KeyFitsLock(k, l)));
     }
 
     //Problem 2
