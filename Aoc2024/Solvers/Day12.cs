@@ -14,7 +14,7 @@ public class Day12 : Solver
 
     private static List<Region> BuildRegions(string input)
     {
-        Unregioned = input.ToDictionary();
+        Unregioned = input.To2dCharDictionary();
         var regions = new List<Region>();
         while (Unregioned.Any())
         {

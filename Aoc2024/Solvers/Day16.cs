@@ -62,7 +62,7 @@ public class Day16 : Solver
 
     public override object Solve1(string input)
     {
-        var maze = input.ToDictionary();
+        var maze = input.To2dCharDictionary();
         return PathToEnd(maze).score;
     }
 
@@ -71,7 +71,7 @@ public class Day16 : Solver
 
     public override object Solve2(string input)
     {
-        var maze = input.ToDictionary();
+        var maze = input.To2dCharDictionary();
         return PathToEnd(maze, true).paths.Count();
     }
 }

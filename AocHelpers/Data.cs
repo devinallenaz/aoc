@@ -267,7 +267,7 @@ public static class Data
         return output;
     }
 
-    public static Dictionary<Point, char> ToDictionary(this string input)
+    public static Dictionary<Point, char> To2dCharDictionary(this string input)
     {
         var lines = input.SplitLines();
         var width = lines.First().Length;
